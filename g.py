@@ -13,6 +13,7 @@ class Binary():
     def init_population(self, number, no_binary = 4):
         return np.random.randint(2, size=(number,no_binary))
 
+    def 
 class Strng():
     pass
 
