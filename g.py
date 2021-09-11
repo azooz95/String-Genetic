@@ -13,7 +13,10 @@ class Binary():
     def init_population(self, number, no_binary = 4):
         return np.random.randint(2, size=(number,no_binary))
 
-    def 
+    def fittness(self, solution, c_solution):
+        return sum(c_solution)/sum(solution) * 100 
+
+
 class Strng():
     pass
 
