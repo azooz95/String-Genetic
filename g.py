@@ -65,10 +65,16 @@ class Binary():
         s_par_1, s_par = s_par[:singl_point], s_par[singl_point:]
         return s_par_1+f_par, f_par_1+s_par
 
+    def muetation(self, new_parent):
+        a = np.random.randint(0, len(new_parent))
+        new_parent[a] = int(not bool(new_parent[a]))
+        return new_parent
+
 class Strng():
     pass
 
 a = Genetic()
 t = a.init_population(7)
 print(a.data())
-g = a.selection(np.array([1,1,1,1]))
+g = a.muetation(np.array([1,1,1,1]))
+print(g)
