@@ -63,18 +63,33 @@ class Binary():
     def crossover(self, f_par, s_par, singl_point = 2):
         f_par_1, f_par = f_par[:singl_point], f_par[singl_point:]
         s_par_1, s_par = s_par[:singl_point], s_par[singl_point:]
-        return s_par_1+f_par, f_par_1+s_par
+        return np.concatenate((s_par_1,f_par), axis=None), np.concatenate((f_par_1,s_par))
 
-    def muetation(self, new_parent):
+    def muetation(self, new_parent, r_mut):
         a = np.random.randint(0, len(new_parent))
         new_parent[a] = int(not bool(new_parent[a]))
         return new_parent
 
+    def run(self, solution):
+        # while True:
+            # Select two genes 
+        f_child = self.selection(solution)
+        s_child = self.selection(solution)
+
+        f_child, s_child = self.crossover(f_child, s_child)
+
+        for i in [f_child, s_child]:
+            
+
+
+
+        print("first child: ", f_child , "second child: ", s_child)
+
 class Strng():
     pass
-
+r = [1]*8
 a = Genetic()
-t = a.init_population(7)
-print(a.data())
-g = a.muetation(np.array([1,1,1,1]))
-print(g)
+t = a.init_population(10, no_binary=8)
+b,j = a.crossover([1,1,1,1], [1,0,1,1])
+print(b,j)
+a.run(r, )
