@@ -17,6 +17,9 @@ class Binary():
         self.all_data = np.random.randint(2, size=(number,no_binary))
         return self.all_data 
 
+    def data(self):
+        return self.all_data
+
     def adding_todata(self, data):
         self.all_data = np.concatenate((self.all_data, data), axis=0)
         return self.all_data
@@ -27,8 +30,35 @@ class Binary():
         a = np.extract(solution == c_solution, c_solution)
         return sum(a)/len(solution)
 
-    def selection(self):
-        pass
+    def selection(self, solution):
+        a = {index: round(10*self.fittness(solution,i)) for index,i in enumerate(self.data())}
+        # s = sum(a.values())
+        # p = 0
+        # selected_one = np.array([0,0,0,0])
+        # print("Sum of: ", s, "r: ", r)
+        # for i in range(0,r):
+        #     p = p + a[i]
+        #     if s<p:
+        #         selected_one = self.data()[i]
+        #         break
+        #     if i == r-1:
+        #         for j in range(r-1,len(a)):
+        #             print(str(self.data()[i])+": ",p)
+        #             p = p + a[j]
+        #             if s<p:
+        #                 selected_one = self.data()[i]
+        #                 break
+        #         break
+        #     print(str(self.data()[i])+": ",p)
+        # print(selected_one)
+        
+        probolity = []
+        for i in a:
+            probolity = probolity + ([i]*a[i])
+        r = np.random.randint(0,len(probolity))
+        ind = probolity[r]
+        select_par = self.data()[ind]
+        return select_par
 
     def crossover(self, f_par, s_par, singl_point = 2):
         f_par_1, f_par = f_par[:singl_point], f_par[singl_point:]
@@ -40,6 +70,5 @@ class Strng():
 
 a = Genetic()
 t = a.init_population(7)
-print(a.read_data())
-t = a.adding_todata(np.array([[0,0,1,1]]))
-print(t)
+print(a.data())
+g = a.selection(np.array([1,1,1,1]))
