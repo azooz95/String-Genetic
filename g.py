@@ -31,10 +31,15 @@ class Binary():
         pass
 
     def crossover(self, f_par, s_par, singl_point = 2):
-        
+        f_par_1, f_par = f_par[:singl_point], f_par[singl_point:]
+        s_par_1, s_par = s_par[:singl_point], s_par[singl_point:]
+        return s_par_1+f_par, f_par_1+s_par
 
 class Strng():
     pass
 
 a = Genetic()
-print(a.fittness([1,0,1,1] , [1,1,0,1]))
+t = a.init_population(7)
+print(a.read_data())
+t = a.adding_todata(np.array([[0,0,1,1]]))
+print(t)
